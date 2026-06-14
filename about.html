@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Retro Arsenal — О нас</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <button id="theme-toggle" aria-label="Переключить тему">🌙</button>
+
+  <header class="site-header">
+    <div class="logo">Retro Arsenal</div>
+    <nav class="main-nav" aria-label="Основная навигация">
+      <ul>
+        <li><a href="index.html">Главная</a></li>
+        <li><a href="about.html">О нас</a></li>
+        <li><a href="page.html">Каталог</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- История магазина -->
+    <section class="about-history fade-in delay-1">
+      <h1>История магазина</h1>
+      <p>Основанный в 1954 году, Retro Arsenal начинался как небольшая лавка антикварного оружия в самом сердце старого города. Его создатель, ветеран и страстный коллекционер, поставил перед собой цель сохранить для будущих поколений легендарные образцы стрелкового вооружения, каждое из которых хранит отпечаток великих событий. В те времена магазин располагался в подвале старинного особняка, где тяжёлые дубовые витрины и запах ружейного масла создавали неповторимую атмосферу.</p>
+      <p>С годами Retro Arsenal превратился в настоящий музей живой истории, известный далеко за пределами города. Мы не просто продаём оружие — мы рассказываем истории. Каждый экспонат проходит тщательную реставрацию и сопровождается детальной документальной справкой. Сегодня в нашей коллекции представлены редчайшие модели, многие из которых когда-то находились на вооружении армий великих держав или мелькали в кадрах исторической хроники.</p>
+      <p>Мы гордимся тем, что наши клиенты становятся частью мирового сообщества ценителей инженерного искусства и живой истории. В стенах магазина вы не услышите громкой музыки или навязчивой рекламы — только приглушённый свет, скрип половиц и неторопливый рассказ о судьбе каждого ствола.</p>
+    </section>
+
+    <!-- Миссия -->
+    <section class="about-mission fade-in delay-2">
+      <h2>Наша миссия</h2>
+      <p>Сохранять и передавать будущим поколениям шедевры оружейного искусства, обеспечивая их подлинность, безупречное состояние и неразрывную связь с историческим контекстом. Мы верим, что за каждым стволом стоит судьба, и стремимся рассказать эти удивительные истории.</p>
+    </section>
+
+    <!-- Атмосфера ретро -->
+    <section class="about-atmosphere fade-in delay-3">
+      <h2>Атмосфера ретро</h2>
+      <p>Переступив порог нашего магазина, вы перенесётесь в начало XX века. Массивные дубовые стеллажи, уютный свет масляных ламп, запах старой кожи и оружейной смазки создают уникальное настроение. Стены украшены архивными фотографиями, оригинальными чертежами и картами, а витрины хранят экспонаты, словно сошедшие с кадров военной хроники. Здесь время замедляет свой бег, позволяя вам по-настоящему насладиться каждой деталью.</p>
+    </section>
+
+    <!-- Адрес (без телефона) -->
+    <section class="about-address fade-in delay-4">
+      <h2>Наш адрес</h2>
+      <p>123, улица Лидинец Сласти</p>
+    </section>
+  </main>
+
+  <footer class="site-footer fade-in delay-5">
+    <p>123, улица Лидинец Сласти</p>
+    <p class="slogan">Оружие с историей</p>
+    <p>&copy; 2024 Retro Arsenal</p>
+  </footer>
+
+  <script>
+    (function() {
+      const themeToggle = document.getElementById('theme-toggle');
+      const body = document.body;
+
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'dark') {
+        body.classList.add('dark-theme');
+        themeToggle.textContent = '☀️';
+      }
+
+      themeToggle.addEventListener('click', () => {
+        body.classList.toggle('dark-theme');
+        if (body.classList.contains('dark-theme')) {
+          localStorage.setItem('theme', 'dark');
+          themeToggle.textContent = '☀️';
+        } else {
+          localStorage.setItem('theme', 'light');
+          themeToggle.textContent = '🌙';
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
