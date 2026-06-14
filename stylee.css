@@ -1,0 +1,460 @@
+/* ============================================
+   Retro Arsenal - Главный файл стилей
+   Строгое разделение структуры и оформления
+   ============================================ */
+
+/* Подключение ретро-шрифтов */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Courier+Prime:wght@400;700&display=swap');
+
+/* === Сброс и базовые настройки === */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* === CSS-переменные для светлой и тёмной тем === */
+:root {
+  /* Светлая тема (по умолчанию) */
+  --bg-color: #F5E6C8;            /* кремовый фон */
+  --text-color: #2c1e0f;          /* тёмно-коричневый текст */
+  --card-bg: #FFF8E7;             /* слоновая кость для карточек */
+  --accent: #8B0000;              /* глубокий красный */
+  --accent-light: #B22222;        /* более яркий красный */
+  --gold: #FFD700;                /* золотой акцент */
+  --gold-dark: #B8860B;           /* тёмное золото */
+  --border-color: #3a2e1f;        /* тёмная граница */
+  --shadow-color: rgba(0,0,0,0.2);/* тени */
+  --noise-color: rgba(0,0,0,0.04);/* цвет зернистости */
+  --footer-bg: #2c1e0f;           /* фон подвала */
+  --footer-text: #F5E6C8;         /* текст подвала */
+  --header-bg: rgba(44,30,15,0.95);/* полупрозрачный фон шапки */
+  --header-text: #F5E6C8;         /* текст в шапке */
+  --btn-text: #8B0000;            /* цвет текста на кнопках */
+  --img-filter: sepia(0.6) contrast(1.1) brightness(0.9); /* ретро-фильтр для изображений */
+}
+
+/* Тёмная тема */
+.dark-theme {
+  --bg-color: #0a0a0a;
+  --text-color: #F5E6C8;
+  --card-bg: #1c1c1c;
+  --accent: #9b1b30;
+  --accent-light: #c12b3a;
+  --gold: #d4af37;
+  --gold-dark: #b8960c;
+  --border-color: #5a4a3a;
+  --shadow-color: rgba(0,0,0,0.6);
+  --noise-color: rgba(255,255,255,0.03);
+  --footer-bg: #0a0a0a;
+  --footer-text: #ccc;
+  --header-bg: rgba(10,10,10,0.95);
+  --header-text: #F5E6C8;
+  --btn-text: #d4af37;
+  --img-filter: sepia(0.4) contrast(1.2) brightness(0.7);
+}
+
+/* === Плавный переход фона при смене темы === */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: 'Courier Prime', monospace;
+  line-height: 1.6;
+  position: relative;
+  overflow-x: hidden;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* === Текстура зернистости (шум) через псевдоэлемент === */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  /* Эффект старой плёнки: повторяющийся радиальный градиент */
+  background: repeating-radial-gradient(
+    circle at 50% 50%,
+    var(--noise-color) 0,
+    var(--noise-color) 1px,
+    transparent 1px,
+    transparent 4px
+  );
+}
+
+/* === Типографика === */
+h1, h2, h3, h4 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  margin-bottom: 0.8em;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+  color: var(--accent);
+  border-bottom: 2px solid var(--gold);
+  padding-bottom: 0.3em;
+  margin-bottom: 1.5rem;
+}
+
+/* === Шапка сайта и навигация === */
+.site-header {
+  background-color: var(--header-bg);
+  backdrop-filter: blur(5px);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  border-bottom: 2px solid var(--gold);
+}
+
+/* Логотип магазина */
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  /* Анимация мерцания неона */
+  animation: logoGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes logoGlow {
+  from {
+    text-shadow: 0 0 5px var(--accent), 0 0 10px var(--gold);
+  }
+  to {
+    text-shadow: 0 0 15px var(--accent-light), 0 0 30px var(--gold), 0 0 40px var(--gold-dark);
+  }
+}
+
+/* Основное меню */
+.main-nav ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.main-nav a {
+  color: var(--header-text);
+  text-decoration: none;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  letter-spacing: 0.05em;
+  padding: 0.3em 0.5em;
+  border-bottom: 2px solid transparent;
+  transition: color 0.3s, border-color 0.3s;
+}
+
+.main-nav a:hover {
+  color: var(--gold);
+  border-bottom-color: var(--gold);
+}
+
+/* === Кнопка переключения темы === */
+#theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 100;
+  background: var(--card-bg);
+  border: 2px solid var(--gold);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 1.8rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 15px var(--gold-dark);
+  transition: background-color 0.3s, transform 0.2s;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+#theme-toggle:hover {
+  transform: scale(1.15);
+  animation: none;
+}
+
+/* === Основной контент === */
+main {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+/* === Секции с плавным появлением (fadeInUp) === */
+.fade-in {
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.delay-1 { animation-delay: 0.2s; }
+.delay-2 { animation-delay: 0.4s; }
+.delay-3 { animation-delay: 0.6s; }
+.delay-4 { animation-delay: 0.8s; }
+.delay-5 { animation-delay: 1.0s; }
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* === Сетка для преимуществ на главной === */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.feature-item {
+  background: var(--card-bg);
+  padding: 1.5rem;
+  border: 2px solid var(--border-color);
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  text-align: center;
+  box-shadow: 0 4px 8px var(--shadow-color);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.feature-item:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 16px var(--shadow-color);
+}
+
+.feature-item h3 {
+  font-size: 1.3rem;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+
+/* === Сетка для товаров (главная и каталог) === */
+.products-grid,
+.catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+/* === Карточка товара === */
+.product-card {
+  background: var(--card-bg);
+  border: 2px solid var(--border-color);
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  padding: 1rem;
+  text-align: center;
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4px 12px var(--shadow-color);
+  transition: all 0.3s ease;
+  /* Эффект состаривания: полупрозрачные углы */
+  background-image: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 50%);
+}
+
+/* Потёртости по краям */
+.product-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 60%, rgba(0,0,0,0.15) 100%);
+  z-index: 0;
+}
+
+/* Интерактивные элементы поверх псевдоэлементов */
+.product-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Эффекты при наведении */
+.product-card:hover {
+  transform: scale(1.03) rotate(0.8deg);
+  border-color: var(--gold);
+  outline-color: var(--gold);
+  box-shadow: 0 12px 24px rgba(255,215,0,0.3);
+}
+
+/* Изображение внутри карточки */
+.card-image {
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  margin-bottom: 0.8rem;
+  position: relative;
+}
+
+.card-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: var(--img-filter);
+  transition: filter 0.3s;
+}
+
+/* Виньетка на изображении для ретро-эффекта */
+.card-image::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.5) 100%);
+  pointer-events: none;
+}
+
+/* Заголовок карточки (название оружия) */
+.product-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  color: var(--accent);
+  margin: 0.5rem 0;
+}
+
+/* Краткое описание */
+.description {
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+  opacity: 0.9;
+}
+
+/* Цена */
+.price {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--gold-dark);
+  margin: 0.5rem 0;
+  font-family: 'Courier Prime', monospace;
+  letter-spacing: 0.05em;
+}
+
+/* Декоративная кнопка "Подробнее" */
+.btn-details {
+  display: inline-block;
+  margin-top: auto;
+  padding: 0.4em 1.5em;
+  border: 1px solid var(--accent);
+  color: var(--btn-text);
+  background: transparent;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-family: 'Courier Prime', monospace;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.btn-details:hover {
+  background-color: var(--accent);
+  color: var(--card-bg);
+  border-color: var(--gold);
+  box-shadow: 0 0 12px var(--gold);
+}
+
+/* === Подвал сайта === */
+.site-footer {
+  background: var(--footer-bg);
+  color: var(--footer-text);
+  text-align: center;
+  padding: 2rem 1rem;
+  margin-top: 3rem;
+  border-top: 2px solid var(--gold);
+}
+
+.site-footer .slogan {
+  font-style: italic;
+  margin: 0.5rem 0;
+  font-size: 1.1rem;
+  opacity: 0.8;
+}
+
+/* === Адаптивность === */
+@media (max-width: 768px) {
+  .site-header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .main-nav ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+    margin-top: 1rem;
+  }
+
+  .logo {
+    font-size: 2rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+  }
+
+  .products-grid,
+  .catalog-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #theme-toggle {
+    width: 45px;
+    height: 45px;
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .product-card {
+    outline-offset: 1px;
+  }
+}
