@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Retro Arsenal — Главная</title>
+  <!-- Подключение общей таблицы стилей -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Кнопка переключения темы (фиксированная) -->
+  <button id="theme-toggle" aria-label="Переключить тему">🌙</button>
+
+  <!-- Шапка сайта -->
+  <header class="site-header">
+    <div class="logo">Retro Arsenal</div>
+    <nav class="main-nav" aria-label="Основная навигация">
+      <ul>
+        <li><a href="index.html">Главная</a></li>
+        <li><a href="about.html">О нас</a></li>
+        <li><a href="page.html">Каталог</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Основное содержимое -->
+  <main>
+    <!-- Приветственная секция -->
+    <section class="hero fade-in delay-1">
+      <h1>Добро пожаловать в Retro Arsenal</h1>
+      <p>Ваш надёжный проводник в мир легендарного оружия прошлых эпох. Мы бережно храним историю и предлагаем только подлинные образцы, прошедшие проверку временем.</p>
+    </section>
+
+    <!-- Преимущества -->
+    <section class="features fade-in delay-2">
+      <h2>Почему выбирают нас</h2>
+      <div class="features-grid">
+        <article class="feature-item">
+          <h3>Аутентичность</h3>
+          <p>Каждый экспонат проходит строгую экспертизу на подлинность и историческую достоверность.</p>
+        </article>
+        <article class="feature-item">
+          <h3>Эксклюзивность</h3>
+          <p>В нашей коллекции редкие модели, которые практически невозможно найти в обычных магазинах.</p>
+        </article>
+        <article class="feature-item">
+          <h3>Историческая ценность</h3>
+          <p>К каждому оружию прилагается детальная легенда и архивные документы, подтверждающие его путь.</p>
+        </article>
+        <article class="feature-item">
+          <h3>Реставрация</h3>
+          <p>Мы восстанавливаем оружие до музейного состояния, сохраняя дух оригинальной эпохи.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Популярные товары (кликабельные карточки-ссылки на каталог) -->
+    <section class="popular fade-in delay-3">
+      <h2>Популярные товары</h2>
+      <div class="products-grid">
+        <a href="page.html" class="product-card">
+          <div class="card-image">
+            <img src="https://www.shutterstock.com/image-vector/mauser-m712-schnellfeuer-c96-black-260nw-2663656625.jpg" alt="Mauser C96">
+          </div>
+          <h3>Mauser C96 (1896)</h3>
+          <p class="price">$450</p>
+        </a>
+        <a href="page.html" class="product-card">
+          <div class="card-image">
+            <img src="https://t4.ftcdn.net/jpg/19/09/71/11/360_F_1909711168_Nsj9zB0o7PaOAKdPJoU5vIMgzMl7Yy5O.jpg" alt="Colt M1911">
+          </div>
+          <h3>Colt M1911 (1911)</h3>
+          <p class="price">$500</p>
+        </a>
+        <a href="page.html" class="product-card">
+          <div class="card-image">
+            <img src="https://www.shutterstock.com/image-vector/vector-illustration-ppsh41-machine-gun-260nw-2426609021.jpg" alt="ППШ-41">
+          </div>
+          <h3>ППШ-41 (1941)</h3>
+          <p class="price">$1200</p>
+        </a>
+        <a href="page.html" class="product-card">
+          <div class="card-image">
+            <img src="https://www.shutterstock.com/image-vector/vector-illustration-mp40-german-machine-260nw-2427863155.jpg" alt="MP40">
+          </div>
+          <h3>MP40 (1940)</h3>
+          <p class="price">$1350</p>
+        </a>
+        <a href="page.html" class="product-card">
+          <div class="card-image">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQl7EC7ZZgaHufFLUBTZLLFwZCzSQqTZS26GQ&s" alt="StG 44">
+          </div>
+          <h3>StG 44 (1944)</h3>
+          <p class="price">$2500</p>
+        </a>
+        <a href="page.html" class="product-card">
+          <div class="card-image">
+            <img src="https://www.shutterstock.com/image-vector/ak47-rifle-gun-weapon-illustration-260nw-2660734149.jpg" alt="AK-47">
+          </div>
+          <h3>AK-47 (1947)</h3>
+          <p class="price">$2200</p>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Подвал сайта -->
+  <footer class="site-footer fade-in delay-4">
+    <p>123, улица Лидинец Сласти</p>
+    <p class="slogan">Оружие с историей</p>
+    <p>&copy; 2024 Retro Arsenal</p>
+  </footer>
+
+  <!-- Скрипт переключения темы (единственный JS) -->
+  <script>
+    (function() {
+      const themeToggle = document.getElementById('theme-toggle');
+      const body = document.body;
+
+      // Восстанавливаем сохранённую тему
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'dark') {
+        body.classList.add('dark-theme');
+        themeToggle.textContent = '☀️';
+      }
+
+      // Обработчик клика
+      themeToggle.addEventListener('click', () => {
+        body.classList.toggle('dark-theme');
+        if (body.classList.contains('dark-theme')) {
+          localStorage.setItem('theme', 'dark');
+          themeToggle.textContent = '☀️';
+        } else {
+          localStorage.setItem('theme', 'light');
+          themeToggle.textContent = '🌙';
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
